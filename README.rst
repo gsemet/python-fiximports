@@ -30,44 +30,44 @@ Here the organization this ``fiximports`` script enforces:
 Rule 1
 ------
 
-    Each import statement only import one object, class or module.
+Each import statement only import one object, class or module.
 
-    Yes::
+Yes::
 
-        from abc import dce
-        from abc import fgh
+    from abc import dce
+    from abc import fgh
 
-    No::
+No::
 
-        from abc import dce, fgh
+    from abc import dce, fgh
 
-    ``fiximports`` automatically splits ``import`` statements that uses a comma. ``\`` and
-    parenthesis are not supported
+``fiximports`` automatically splits ``import`` statements that uses a comma. ``\`` and parenthesis
+are not supported
 
-    *Bonus*: enforcing this rule ensure you can always force occurent of the following search
-    pattern: ``import name_of_the_object``.
+*Bonus*: enforcing this rule ensure you can always force occurent of the following search pattern:
+ ``import name_of_the_object``.
 
 Rule 2
 ------
 
-    Import statements are organized in block, separated by an empty line. Each block are
-    alphabetically sorted.
+Import statements are organized in block, separated by an empty line. Each block are alphabetically
+sorted.
 
-    Yes::
+Yes::
 
-        from abc import aaaa
-        from abc import bbbb
+    from abc import aaaa
+    from abc import bbbb
 
-    No::
+No::
 
-        from abc import bbbb
-        from abc import aaaa
-        from abc import cccc
+    from abc import bbbb
+    from abc import aaaa
+    from abc import cccc
 
-    Sorting only occurs for a given block, if for any reason a given import statement needs to
-    be placed after another one, just add an empty line.
+Sorting only occurs for a given block, if for any reason a given import statement needs to be placed
+after another one, just add an empty line.
 
-    ``fiximports`` can sorts all ``import`` statements at once (preserving the 'group' splitting).
+``fiximports`` can sorts all ``import`` statements at once (preserving the 'group' splitting).
 
 
 Installation
