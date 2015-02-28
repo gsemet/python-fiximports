@@ -14,10 +14,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import sys
 import os
 import sublime
 import sublime_plugin
+import sys
 
 PPA_PATH = list()
 PYMAMI = '{0}{1}'.format(*sys.version_info[:2])
@@ -50,7 +50,7 @@ except:
 
 class PythonFiximportsCommand(sublime_plugin.TextCommand):
 
-    def run_dissabled(self, edit):
+    def run(self, edit):
         syntax = self.view.settings().get('syntax')
         if syntax.lower().find('python') == -1:
             return
@@ -59,26 +59,29 @@ class PythonFiximportsCommand(sublime_plugin.TextCommand):
         source = self.view.substr(replace_region)
         # split_import_statements = self.settings.get('split_import_statements', False)
 
+        print("Reorganizing file ")
         self.settings = sublime.load_settings(SETTINGS_FILE)
 
-        fixed = fiximports.FixImports().sortImportGroups("filename", source)
-        fixed = source
-        #is_dirty, err = MergeUtils.merge_code(self.view, edit, source, fixed)
-        # if err:
-        #     sublime.error_message(
-        #         "%s: Merge failure: '%s'" % (PLUGIN_NAME, err))
-        #     raise
+        res, fixed = fiximports.FixImports().sortImportGroups("filename", source)
+        is_dirty, err = MergeUtils.merge_code(self.view, edit, source, fixed)
+        if err:
+            sublime.error_message(
+                "%s: Merge failure: '%s'" % (PLUGIN_NAME, err))
+            raise
 
 
 class PythonFiximportsBackground(sublime_plugin.EventListener):
 
-    def on_pre_save_dissabled(self, view):
+    def on_pre_save(self, view):
         self.settings = sublime.load_settings(SETTINGS_FILE)
 
+        print("Reorganizing import on save")
         syntax = view.settings().get('syntax')
-        if syntax.lower().find('python') == -1:
+        if 'python' in syntax.lower():
             return
 
+        print("self.settings.get('autofix_on_save', False)", self.settings.get('autofix_on_save', False))
         # do autoformat on file save if allowed in settings
         if self.settings.get('autofix_on_save', False):
+            print("Executing command 'python_fiximports'")
             view.run_command('python_fiximports')
