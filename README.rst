@@ -5,10 +5,9 @@ Python Fix Imports
 
 Python Fix Imports is a Sublime Text 3 plugin ...
 
-History
-*******
+Rationals
+*********
 
-...
 
 Installation
 ************
@@ -17,23 +16,24 @@ To avoid dependencies, all necessary modules are included within the package.
 
 
 1. Using [Sublime Package Control][]
-    + Use `cmd+shift+P` shortcut then `Package Control: Install Package`
-    + Look for `Python Fix Imports` and install it.
+
+- Use ``cmd+shift+P`` shortcut then ``Package Control: Install Package``
+- Look for ``Python Fix Imports`` and install it.
 
 
-1. Using mercurial (hg) repository on bitbucket:
-    + Open a terminal, move to Packages directory (refers to the folder that opens when you use the Preferences > Browse Packages… menu). Then type in terminal:
-    + `hg clone https://bitbucket.org/StephaneBunel/pythonpep8autoformat 'Python Fix Imports'`
+1. Using Git repository on GitHub:
 
+  - Open a terminal, move to Packages directory (refers to the folder that opens when you use the
+    ``Preferences > Browse Packages``... menu).
+  - Then type in terminal::
 
-1. Manually:
-    + Download an [archive][TagArchive]
-      of Python Fix Imports
-    + Open a terminal, move to Packages directory (refers to the folder that opens when you use the Preferences > Browse Packages… menu) and create a new directory named 'Python Fix Imports'
-    + Extract archive contents in new 'Python Fix Imports' directory.
+    `git clone https://github.com/Stibbons/python-fiximports python_fiximports'`
 
 Settings
 ********
+
+Global Settings
+===============
 
 You'll find settings in Preferences menu (``Preferences -> Package Settings -> Python Fix Imports``).
 
@@ -47,7 +47,7 @@ You'll find settings in Preferences menu (``Preferences -> Package Settings -> P
     }
 
 Per-project settings
-********************
+====================
 
 ::
 
@@ -66,17 +66,32 @@ Usage
 
 Formatting is applied on the whole document.
 
-### Using keyboard:
+Using keyboard:
+===============
 
 - GNU/Linux: `ctrl+shift+i`
 - OSX:       `ctrl+shift+i`
 - Windows:   `ctrl+shift+i`
 
-Using Command Palette:
-**********************
+SideBar
+=======
 
-You can format your Python code by opening Command Palette (ctrl+shift+P) and type "fix"... up to
-highlight full caption.
+Right click on the file(s) or folder(s)
+
+Active view
+===========
+
+Right click on the view or right click on the selected text
+
+On Save: provided by settings: option autofix_on_save
+
+Command Palette
+===============
+
+Bring up the Command Palette and select ``Python Fix Imports`` or
+ ``Toggle Python Fix Imports (until restart)``
+
+Hint: open Command Palette (ctrl+shift+P) and type "Fix"... up to highlight full caption.
 
 License
 *******
