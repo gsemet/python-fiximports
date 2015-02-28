@@ -30,6 +30,7 @@ PPA_PATH = list()
 PYMAMI = '{0}{1}'.format(*sys.version_info[:2])
 ST_VERSION = 3000 if sublime.version() == '' else int(sublime.version())
 PLUGIN_NAME = "Python Fix Imports"
+package_name = PLUGIN_NAME
 SETTINGS_FILE = 'python_fiximports.sublime-settings'
 
 if sublime.platform() == 'windows':
