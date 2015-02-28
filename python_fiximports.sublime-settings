@@ -1,0 +1,6 @@
+{
+	// Fix the imports on save
+	"autofix_on_save": false,
+
+	"split_import_statements": true,
+}
