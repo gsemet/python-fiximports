@@ -39,6 +39,9 @@ Yes::
 No::
 
     from abc import dce, fgh
+    from abc import (dce, fgh)
+    from abc import dce, \
+                    fgh
 
 ``fiximports`` automatically splits ``import`` statements that uses a comma. ``\`` and parenthesis
 are not supported
@@ -166,7 +169,7 @@ import statements in the current file, independently of the global setting ``aut
 ``Enable Python Fix Imports for this file (until restart)``: Enable the automatic fix of the import
 statements in the current file, independently of the global setting ``autofix_on_save``.
 
-*Hint:* open Command Palette (``ctrl+shift+P``) and type ``Fix...`` up to highlight full caption.
+**Hint:** open Command Palette (``ctrl+shift+P``) and type ``Fix...`` up to highlight full caption.
 
 License
 *******
