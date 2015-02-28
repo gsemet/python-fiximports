@@ -1,0 +1,24 @@
+Python Fix Imports
+==================
+
+Python Fix Imports is a plugin that helps you maintaining your imports statements in your
+python file in a clean and efficient way.
+
+Usage
+-----
+
+Key Bindings
+************
+
+The default key bindings for this plugin:
+
+**Windows, Linux:**
++ `ctrl+shift+i`: Format current file
+
+**OSX:**
++ `ctrl+shift+i`: Format current file
+
+Command Palette
+***************
+
+Open the command palette, it apperas as ``Python Fix Imports``.

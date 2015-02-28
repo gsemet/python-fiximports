@@ -19,6 +19,13 @@ import sublime
 import sublime_plugin
 import sys
 
+debug = True
+
+
+def printDebug(text, *args):
+    if debug:
+        print("[Python Fix Imports] " + text, args)
+
 PPA_PATH = list()
 PYMAMI = '{0}{1}'.format(*sys.version_info[:2])
 ST_VERSION = 3000 if sublime.version() == '' else int(sublime.version())
@@ -42,7 +49,7 @@ versionlibs_path = os.path.join(pkg_path, 'libs', 'py' + PYMAMI)
 if os.path.exists(versionlibs_path):
     PPA_PATH.append(versionlibs_path)
 
-print('Python fiximports: included directory to sys.path :', PPA_PATH)
+printDebug('included directory to sys.path :', PPA_PATH)
 [sys.path.insert(0, p) for p in PPA_PATH if p not in sys.path]
 
 try:
@@ -55,6 +62,7 @@ except:
 
 
 override_enable_python_auto_fiximports = None
+disable_python_autofix_for_files = set()
 enable_python_autofix_for_files = set()
 
 
@@ -82,7 +90,7 @@ class PythonFiximportsCommand(sublime_plugin.TextCommand):
         source = self.view.substr(replace_region)
         # split_import_statements = self.settings.get('split_import_statements', False)
 
-        print("Reorganizing file ")
+        printDebug("Reorganizing file ")
         split_import_statements = load_python_fiximports_settings("split_import_statements", False)
         sort_import_statements = load_python_fiximports_settings("sort_import_statements", False)
 
@@ -101,7 +109,7 @@ class EnablePythonFiximportsCommand(sublime_plugin.TextCommand):
 
     def run(self, edit):
         global override_enable_python_auto_fiximports
-        print("EnablePythonFiximportsCommand")
+        printDebug("EnablePythonFiximportsCommand")
         override_enable_python_auto_fiximports = True
 
 
@@ -109,22 +117,37 @@ class DisablePythonFiximportsCommand(sublime_plugin.TextCommand):
 
     def run(self, edit):
         global override_enable_python_auto_fiximports
-        print("DisablePythonFiximportsCommand")
+        printDebug("DisablePythonFiximportsCommand")
         override_enable_python_auto_fiximports = False
 
 
 class DisablePythonFiximportsForFileCommand(sublime_plugin.TextCommand):
 
     def run(self, edit):
+        global disable_python_autofix_for_files
+        printDebug("DisablePythonFiximportsForFileCommand")
+        f = get_current_filename()
+        disable_python_autofix_for_files.add(f)
+        if f in enable_python_autofix_for_files:
+            enable_python_autofix_for_files.remove(f)
+
+
+class EnablePythonFiximportsForFileCommand(sublime_plugin.TextCommand):
+
+    def run(self, edit):
         global enable_python_autofix_for_files
-        print("enable_python_autofix_for_files")
-        enable_python_autofix_for_files.add(get_current_filename())
+        global disable_python_fiximports_for_file
+        printDebug("enable_python_autofix_for_files")
+        f = get_current_filename()
+        enable_python_autofix_for_files.add(f)
+        if f in disable_python_autofix_for_files:
+            disable_python_autofix_for_files.remove(f)
 
 
 class PythonFiximportsBackground(sublime_plugin.EventListener):
 
     def on_pre_save(self, view):
-        print("Reorganizing import on save")
+        printDebug("Reorganizing import on save")
         syntax = view.settings().get('syntax')
         if 'python' not in syntax.lower():
             return
@@ -133,11 +156,13 @@ class PythonFiximportsBackground(sublime_plugin.EventListener):
         if not load_python_fiximports_settings('autofix_on_save', False):
             return
 
-        if override_enable_python_auto_fiximports is False:
+        f = get_current_filename()
+        if (override_enable_python_auto_fiximports is False and
+                f not in enable_python_autofix_for_files):
             return
 
-        if get_current_filename() in enable_python_autofix_for_files:
+        if f in disable_python_autofix_for_files:
             return
 
-        print("Executing command 'python_fiximports'")
+        printDebug("Executing command 'python_fiximports'")
         view.run_command('python_fiximports')
