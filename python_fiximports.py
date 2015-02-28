@@ -55,6 +55,7 @@ except:
 
 
 override_enable_python_auto_fiximports = None
+enable_python_autofix_for_files = set()
 
 
 def load_python_fiximports_settings(name, default):
@@ -63,6 +64,11 @@ def load_python_fiximports_settings(name, default):
     global_config = sublime.load_settings(USER_CONFIG_NAME)
 
     return project_config.get(name, global_config.get(name, default))
+
+
+def get_current_filename():
+    view = sublime.Window.active_view(sublime.active_window())
+    return os.path.abspath(view.file_name())
 
 
 class PythonFiximportsCommand(sublime_plugin.TextCommand):
@@ -91,16 +97,28 @@ class PythonFiximportsCommand(sublime_plugin.TextCommand):
             raise
 
 
-class TogglePythonFiximportsCommand(sublime_plugin.TextCommand):
+class EnablePythonFiximportsCommand(sublime_plugin.TextCommand):
 
     def run(self, edit):
         global override_enable_python_auto_fiximports
-        if override_enable_python_auto_fiximports is None:
-            override_enable_python_auto_fiximports = True
-        elif override_enable_python_auto_fiximports is True:
-            override_enable_python_auto_fiximports = False
-        else:
-            override_enable_python_auto_fiximports = True
+        print("EnablePythonFiximportsCommand")
+        override_enable_python_auto_fiximports = True
+
+
+class DisablePythonFiximportsCommand(sublime_plugin.TextCommand):
+
+    def run(self, edit):
+        global override_enable_python_auto_fiximports
+        print("DisablePythonFiximportsCommand")
+        override_enable_python_auto_fiximports = False
+
+
+class DisablePythonFiximportsForFileCommand(sublime_plugin.TextCommand):
+
+    def run(self, edit):
+        global enable_python_autofix_for_files
+        print("enable_python_autofix_for_files")
+        enable_python_autofix_for_files.add(get_current_filename())
 
 
 class PythonFiximportsBackground(sublime_plugin.EventListener):
@@ -112,8 +130,14 @@ class PythonFiximportsBackground(sublime_plugin.EventListener):
             return
 
         # do autoformat on file save if allowed in settings
-        if load_python_fiximports_settings('autofix_on_save', False):
+        if not load_python_fiximports_settings('autofix_on_save', False):
+            return
 
-            if override_enable_python_auto_fiximports or override_enable_python_auto_fiximports is False:
-                print("Executing command 'python_fiximports'")
-                view.run_command('python_fiximports')
+        if override_enable_python_auto_fiximports is False:
+            return
+
+        if get_current_filename() in enable_python_autofix_for_files:
+            return
+
+        print("Executing command 'python_fiximports'")
+        view.run_command('python_fiximports')
