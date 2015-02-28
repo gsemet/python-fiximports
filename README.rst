@@ -1,12 +1,11 @@
-
 ##################
 Python Fix Imports
 ##################
 
-Python Fix Imports is a Sublime Text 3 plugin that can automatically reorganize you import
+Python Fix Imports is a Sublime Text 3 plugin that can automatically reorganize your import
 statements. Please read the "Rationals" section for more information.
 
-This plugin comes from a script that has been writen for the Buildbot project, in order to help
+This plugin comes from a script that has been written for the Buildbot project, in order to help
 developers ensuring they properly organize their import statements in there Python files
 
 
@@ -21,7 +20,7 @@ Thanks to distributed versioning systems such as Git, several persons can easily
 time on the same file. And one source of conflict is the management of the ``import`` statements,
 that each developers adds his modifications differently.
 
-We really started having the need for automatical reorganization when we have set up an automatic
+We really started having the need for automatic reorganization when we have set up an automatic
 merge of several branches alltogether. Most of the time, the conflicts were found to be on the
 ``import`` lines...
 
@@ -44,8 +43,8 @@ No::
 ``fiximports`` automatically splits ``import`` statements that uses a comma. ``\`` and parenthesis
 are not supported
 
-*Bonus*: enforcing this rule ensure you can always force occurent of the following search pattern:
- ``import name_of_the_object``.
+*Bonus*: enforcing this rule ensure you can always find occurences of the following search pattern:
+``import name_of_the_object``.
 
 Rule 2
 ------
@@ -86,13 +85,13 @@ To avoid dependencies, all necessary modules are included within the package.
     ``Preferences > Browse Packages``... menu).
   - Then type in terminal::
 
-    `git clone https://github.com/Stibbons/python-fiximports python_fiximports'`
+        git clone https://github.com/Stibbons/python-fiximports python_fiximports
 
 Settings
 ********
 
 Global Settings
-===============
+---------------
 
 You'll find settings in Preferences menu (``Preferences -> Package Settings -> Python Fix Imports``).
 
@@ -111,7 +110,7 @@ You'll find settings in Preferences menu (``Preferences -> Package Settings -> P
 
 
 Per-project settings
-====================
+--------------------
 
 ::
 
@@ -131,24 +130,24 @@ Usage
 Formatting is applied on the whole document.
 
 Using keyboard:
-===============
+---------------
 
 - GNU/Linux: ``ctrl+shift+i``
 - OSX:       ``ctrl+shift+i``
 - Windows:   ``ctrl+shift+i``
 
 SideBar
-=======
+-------
 
 Right click on the file(s) or folder(s)
 
 On Save
-=======
+-------
 
 Imports are reorganized automatically on save if the following setting is set: ``autofix_on_save``.
 
 Command Palette
-===============
+---------------
 
 Bring up the Command Palette and select one of the following options:
 
@@ -168,12 +167,12 @@ Bring up the Command Palette and select one of the following options:
 
 ``Disable Python Fix Imports for this file (until restart)``
 
-    Disable the automatical fix of the import statements in the current file, independentely of the
+    Disable the automatic fix of the import statements in the current file, independently of the
     global setting ``autofix_on_save``.
 
 ``Enable Python Fix Imports for this file (until restart)``
 
-    Enable the automatical fix of the import statements in the current file, independentely of the
+    Enable the automatic fix of the import statements in the current file, independently of the
     global setting ``autofix_on_save``.
 
 Hint: open Command Palette (``ctrl+shift+P``) and type ``Fix...`` up to highlight full caption.
@@ -181,7 +180,7 @@ Hint: open Command Palette (``ctrl+shift+P``) and type ``Fix...`` up to highligh
 License
 *******
 
-Copyright 2015 Semet Gaetan
+Copyright 2015 Semet Gaetan <gaetan@xeberon.net>
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
