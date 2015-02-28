@@ -38,8 +38,8 @@ else:
     USER_CONFIG_NAME = 'python_fiximports.sublime-settings'
 
 try:
-    from . import fiximports
-    import MergeUtils
+    from .libs import fiximports
+    from .libs import MergeUtils
 except:
     sublime.error_message(
         '{0}: import error: {1}'.format(PLUGIN_NAME, sys.exc_info()[1]))
