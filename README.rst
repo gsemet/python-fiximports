@@ -3,10 +3,71 @@
 Python Fix Imports
 ##################
 
-Python Fix Imports is a Sublime Text 3 plugin ...
+Python Fix Imports is a Sublime Text 3 plugin that can automatically reorganize you import
+statements. Please read the "Rationals" section for more information.
+
+This plugin comes from a script that has been writen for the Buildbot project, in order to help
+developers ensuring they properly organize their import statements in there Python files
+
 
 Rationals
 *********
+
+The beginning of the file of each Python script is one the part of the code that is likely to evolve
+the most over the lifetime of the code. Imports statements gets added, removed, reorganized all over
+the time.
+
+Thanks to distributed versioning systems such as Git, several persons can easily work on the same
+time on the same file. And one source of conflict is the management of the ``import`` statements,
+that each developers adds his modifications differently.
+
+We really started having the need for automatical reorganization when we have set up an automatic
+merge of several branches alltogether. Most of the time, the conflicts were found to be on the
+``import`` lines...
+
+Here the organization this ``fiximports`` script enforces:
+
+Rule 1
+------
+
+    Each import statement only import one object, class or module.
+
+    Yes::
+
+        from abc import dce
+        from abc import fgh
+
+    No::
+
+        from abc import dce, fgh
+
+    ``fiximports`` automatically splits ``import`` statements that uses a comma. ``\`` and
+    parenthesis are not supported
+
+    *Bonus*: enforcing this rule ensure you can always force occurent of the following search
+    pattern: ``import name_of_the_object``.
+
+Rule 2
+------
+
+    Import statements are organized in block, separated by an empty line. Each block are
+    alphabetically sorted.
+
+    Yes::
+
+        from abc import aaaa
+        from abc import bbbb
+
+    No::
+
+        from abc import bbbb
+        from abc import aaaa
+        from abc import cccc
+
+    Sorting only occurs for a given block, if for any reason a given import statement needs to
+    be placed after another one, just add an empty line.
+
+    ``fiximports`` can sorts all ``import`` statements at once (preserving the 'group' splitting).
 
 
 Installation

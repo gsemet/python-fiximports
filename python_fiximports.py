@@ -68,16 +68,17 @@ class PythonFiximportsCommand(sublime_plugin.TextCommand):
 
     def run(self, edit):
         syntax = self.view.settings().get('syntax')
-        if syntax.lower().find('python') == -1:
+        if 'python' not in syntax.lower():
             return
-        replace_region = self.view.line(
-            sublime.Region(0, self.view.size()))
+        replace_region = self.view.line(sublime.Region(0, self.view.size()))
         source = self.view.substr(replace_region)
-        # split_import_statements = self.settings.get('split_import_statements', False)
 
         printDebug("Reorganizing file ")
         split_import_statements = load_python_fiximports_settings("split_import_statements", False)
         sort_import_statements = load_python_fiximports_settings("sort_import_statements", False)
+        printDebug("Options")
+        printDebug("split_import_statements = {!r}".format(split_import_statements))
+        printDebug("sort_import_statements = {!r}".format(sort_import_statements))
 
         res, fixed = fiximports.FixImports().sortImportGroups(
             "filename", source,
