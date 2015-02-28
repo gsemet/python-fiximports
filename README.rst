@@ -74,18 +74,19 @@ Installation
 
 To avoid dependencies, all necessary modules are included within the package.
 
-1. Using ``Sublime Package Control``
+Using ``Sublime Package Control``
+---------------------------------
 
-  - Use ``cmd+shift+P`` shortcut then ``Package Control: Install Package``
-  - Look for ``Python Fix Imports`` and install it.
+- Use ``cmd+shift+P`` shortcut then ``Package Control: Install Package``
+- Look for ``Python Fix Imports`` and install it.
 
-2. Using Git repository on GitHub:
+Using Git repository on GitHub:
 
-  - Open a terminal, move to Packages directory (refers to the folder that opens when you use the
-    ``Preferences > Browse Packages``... menu).
-  - Then type in terminal::
+- Open a terminal, move to Packages directory (refers to the folder that opens when you use the
+  ``Preferences > Browse Packages``... menu).
+- Then type in terminal::
 
-        git clone https://github.com/Stibbons/python-fiximports python_fiximports
+    git clone https://github.com/Stibbons/python-fiximports python_fiximports
 
 Settings
 ********
@@ -132,9 +133,9 @@ Formatting is applied on the whole document.
 Using keyboard:
 ---------------
 
-- GNU/Linux: ``ctrl+shift+i``
-- OSX:       ``ctrl+shift+i``
-- Windows:   ``ctrl+shift+i``
+- GNU/Linux: ``ctrl+alt+shift+i``
+- Windows:   ``ctrl+alt+shift+i``
+- OSX:       ``ctrl+command+shift+i``
 
 SideBar
 -------
@@ -151,31 +152,21 @@ Command Palette
 
 Bring up the Command Palette and select one of the following options:
 
-``Python Fix Imports``
+``Python Fix Imports``: Fix imports in the current file.
 
-    Fix imports in the current file.
+``Enable Python Fix Imports (until restart)``: Toggle the general settings ``autofix_on_save`` to
+``Enabled`` until Sublime restart (overwrite the project and global settings).
 
-``Enable Python Fix Imports (until restart)``
+``Disable Python Fix Imports (until restart)``: Toggle the general settings ``autofix_on_save`` to
+``Disabled`` until Sublime restart (overwrite the project and global settings).
 
-    Toggle the general settings ``autofix_on_save`` to ``Enabled`` until Sublime restart (overwrite
-    the project and global settings).
+``Disable Python Fix Imports for this file (until restart)``: Disable the automatic fix of the
+import statements in the current file, independently of the global setting ``autofix_on_save``.
 
-``Disable Python Fix Imports (until restart)``
+``Enable Python Fix Imports for this file (until restart)``: Enable the automatic fix of the import
+statements in the current file, independently of the global setting ``autofix_on_save``.
 
-    Toggle the general settings ``autofix_on_save`` to ``Disabled`` until Sublime restart (overwrite
-    the project and global settings).
-
-``Disable Python Fix Imports for this file (until restart)``
-
-    Disable the automatic fix of the import statements in the current file, independently of the
-    global setting ``autofix_on_save``.
-
-``Enable Python Fix Imports for this file (until restart)``
-
-    Enable the automatic fix of the import statements in the current file, independently of the
-    global setting ``autofix_on_save``.
-
-Hint: open Command Palette (``ctrl+shift+P``) and type ``Fix...`` up to highlight full caption.
+*Hint:* open Command Palette (``ctrl+shift+P``) and type ``Fix...`` up to highlight full caption.
 
 License
 *******
