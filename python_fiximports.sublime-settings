@@ -3,4 +3,5 @@
 	"autofix_on_save": false,
 
 	"split_import_statements": true,
+	"sort_import_statements": true,
 }

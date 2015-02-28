@@ -55,8 +55,10 @@ except:
 
 
 def load_python_fiximports_settings(name, default):
-    project_config = sublime.load_settings(SETTINGS_FILE)
+    view = sublime.active_window().active_view()
+    project_config = view.settings().get('python_fiximports', {}) if view else {}
     global_config = sublime.load_settings(USER_CONFIG_NAME)
+
     return project_config.get(name, global_config.get(name, default))
 
 
@@ -73,8 +75,12 @@ class PythonFiximportsCommand(sublime_plugin.TextCommand):
 
         print("Reorganizing file ")
         split_import_statements = load_python_fiximports_settings("split_import_statements", False)
+        sort_import_statements = load_python_fiximports_settings("sort_import_statements", False)
 
-        res, fixed = fiximports.FixImports().sortImportGroups("filename", source)
+        res, fixed = fiximports.FixImports().sortImportGroups(
+            "filename", source,
+            splitImportStatements=split_import_statements,
+            sortImportStatements=sort_import_statements)
         is_dirty, err = MergeUtils.merge_code(self.view, edit, source, fixed)
         if err:
             sublime.error_message(
@@ -88,11 +94,8 @@ class PythonFiximportsBackground(sublime_plugin.EventListener):
         print("Reorganizing import on save")
         syntax = view.settings().get('syntax')
         if 'python' not in syntax.lower():
-            print("its not a python file")
             return
 
-        print("self.settings.get('autofix_on_save', False)",
-              load_python_fiximports_settings('autofix_on_save', False))
         # do autoformat on file save if allowed in settings
         if load_python_fiximports_settings('autofix_on_save', False):
             print("Executing command 'python_fiximports'")
