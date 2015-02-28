@@ -19,7 +19,7 @@ import sublime
 import sublime_plugin
 import sys
 
-debug = True
+debug = False
 
 
 def printDebug(text, *args):
