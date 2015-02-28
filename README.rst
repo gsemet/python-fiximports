@@ -15,13 +15,13 @@ Installation
 To avoid dependencies, all necessary modules are included within the package.
 
 
-1. Using [Sublime Package Control][]
+#. Using ``Sublime Package Control``
 
-- Use ``cmd+shift+P`` shortcut then ``Package Control: Install Package``
-- Look for ``Python Fix Imports`` and install it.
+  - Use ``cmd+shift+P`` shortcut then ``Package Control: Install Package``
+  - Look for ``Python Fix Imports`` and install it.
 
 
-1. Using Git repository on GitHub:
+#. Using Git repository on GitHub:
 
   - Open a terminal, move to Packages directory (refers to the folder that opens when you use the
     ``Preferences > Browse Packages``... menu).
@@ -44,6 +44,7 @@ You'll find settings in Preferences menu (``Preferences -> Package Settings -> P
         "autofix_on_save": false,
 
         "split_import_statements": true,
+        "sort_import_statements": true,
     }
 
 Per-project settings
@@ -59,7 +60,7 @@ Per-project settings
         }
     }
 
-By editing User settings, your personal liking will be kept safe over plugin upgrades.
+By editing ``User settings``, your personal liking will be kept safe over plugin upgrades.
 
 Usage
 *****
@@ -69,9 +70,9 @@ Formatting is applied on the whole document.
 Using keyboard:
 ===============
 
-- GNU/Linux: `ctrl+shift+i`
-- OSX:       `ctrl+shift+i`
-- Windows:   `ctrl+shift+i`
+- GNU/Linux: ``ctrl+shift+i``
+- OSX:       ``ctrl+shift+i``
+- Windows:   ``ctrl+shift+i``
 
 SideBar
 =======
@@ -89,9 +90,9 @@ Command Palette
 ===============
 
 Bring up the Command Palette and select ``Python Fix Imports`` or
- ``Toggle Python Fix Imports (until restart)``
+``Toggle Python Fix Imports (until restart)``
 
-Hint: open Command Palette (ctrl+shift+P) and type "Fix"... up to highlight full caption.
+Hint: open Command Palette (``ctrl+shift+P``) and type ``Fix...`` up to highlight full caption.
 
 License
 *******
