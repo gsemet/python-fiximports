@@ -14,14 +14,12 @@ Installation
 
 To avoid dependencies, all necessary modules are included within the package.
 
-
-#. Using ``Sublime Package Control``
+1. Using ``Sublime Package Control``
 
   - Use ``cmd+shift+P`` shortcut then ``Package Control: Install Package``
   - Look for ``Python Fix Imports`` and install it.
 
-
-#. Using Git repository on GitHub:
+2. Using Git repository on GitHub:
 
   - Open a terminal, move to Packages directory (refers to the folder that opens when you use the
     ``Preferences > Browse Packages``... menu).
@@ -79,12 +77,10 @@ SideBar
 
 Right click on the file(s) or folder(s)
 
-Active view
-===========
+On Save
+=======
 
-Right click on the view or right click on the selected text
-
-On Save: provided by settings: option autofix_on_save
+Imports are reorganized automatically on save if the following setting is set: ``autofix_on_save``.
 
 Command Palette
 ===============
@@ -103,7 +99,7 @@ Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
-[http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
+http://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
