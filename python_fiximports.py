@@ -25,6 +25,12 @@ ST_VERSION = 3000 if sublime.version() == '' else int(sublime.version())
 PLUGIN_NAME = "Python Fix Imports"
 SETTINGS_FILE = 'python_fiximports.sublime-settings'
 
+if sublime.platform() == 'windows':
+    USER_CONFIG_NAME = 'python_fiximports.sublime-settings'
+else:
+    USER_CONFIG_NAME = 'python_fiximports.sublime-settings'
+
+
 #-- Cannot use sublime.packages_path() with ST3 because of inconsistency
 #-- of returned path between bootstap time vs running time.
 #pkg_path = os.path.join(sublime.packages_path(), PLUGIN_NAME)
@@ -48,6 +54,12 @@ except:
     raise
 
 
+def load_python_fiximports_settings(name, default):
+    project_config = sublime.load_settings(SETTINGS_FILE)
+    global_config = sublime.load_settings(USER_CONFIG_NAME)
+    return project_config.get(name, global_config.get(name, default))
+
+
 class PythonFiximportsCommand(sublime_plugin.TextCommand):
 
     def run(self, edit):
@@ -60,7 +72,7 @@ class PythonFiximportsCommand(sublime_plugin.TextCommand):
         # split_import_statements = self.settings.get('split_import_statements', False)
 
         print("Reorganizing file ")
-        self.settings = sublime.load_settings(SETTINGS_FILE)
+        split_import_statements = load_python_fiximports_settings("split_import_statements", False)
 
         res, fixed = fiximports.FixImports().sortImportGroups("filename", source)
         is_dirty, err = MergeUtils.merge_code(self.view, edit, source, fixed)
@@ -73,15 +85,15 @@ class PythonFiximportsCommand(sublime_plugin.TextCommand):
 class PythonFiximportsBackground(sublime_plugin.EventListener):
 
     def on_pre_save(self, view):
-        self.settings = sublime.load_settings(SETTINGS_FILE)
-
         print("Reorganizing import on save")
         syntax = view.settings().get('syntax')
-        if 'python' in syntax.lower():
+        if 'python' not in syntax.lower():
+            print("its not a python file")
             return
 
-        print("self.settings.get('autofix_on_save', False)", self.settings.get('autofix_on_save', False))
+        print("self.settings.get('autofix_on_save', False)",
+              load_python_fiximports_settings('autofix_on_save', False))
         # do autoformat on file save if allowed in settings
-        if self.settings.get('autofix_on_save', False):
+        if load_python_fiximports_settings('autofix_on_save', False):
             print("Executing command 'python_fiximports'")
             view.run_command('python_fiximports')
