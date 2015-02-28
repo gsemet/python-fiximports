@@ -54,6 +54,9 @@ except:
     raise
 
 
+override_enable_python_auto_fiximports = None
+
+
 def load_python_fiximports_settings(name, default):
     view = sublime.active_window().active_view()
     project_config = view.settings().get('python_fiximports', {}) if view else {}
@@ -88,6 +91,18 @@ class PythonFiximportsCommand(sublime_plugin.TextCommand):
             raise
 
 
+class TogglePythonFiximportsCommand(sublime_plugin.TextCommand):
+
+    def run(self, edit):
+        global override_enable_python_auto_fiximports
+        if override_enable_python_auto_fiximports is None:
+            override_enable_python_auto_fiximports = True
+        elif override_enable_python_auto_fiximports is True:
+            override_enable_python_auto_fiximports = False
+        else:
+            override_enable_python_auto_fiximports = True
+
+
 class PythonFiximportsBackground(sublime_plugin.EventListener):
 
     def on_pre_save(self, view):
@@ -98,5 +113,7 @@ class PythonFiximportsBackground(sublime_plugin.EventListener):
 
         # do autoformat on file save if allowed in settings
         if load_python_fiximports_settings('autofix_on_save', False):
-            print("Executing command 'python_fiximports'")
-            view.run_command('python_fiximports')
+
+            if override_enable_python_auto_fiximports or override_enable_python_auto_fiximports is False:
+                print("Executing command 'python_fiximports'")
+                view.run_command('python_fiximports')

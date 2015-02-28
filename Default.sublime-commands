@@ -1,3 +1,4 @@
 [
-    { "caption": "Python Fix Imports", "command": "python_fiximports" }
+    { "caption": "Python Fix Imports", "command": "python_fiximports" },
+    { "caption": "Toggle Python Fix Imports (until restart)", "command": "toggle_python_fiximports" }
 ]
