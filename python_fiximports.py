@@ -50,7 +50,7 @@ except:
 
 class PythonFiximportsCommand(sublime_plugin.TextCommand):
 
-    def run(self, edit):
+    def run_dissabled(self, edit):
         syntax = self.view.settings().get('syntax')
         if syntax.lower().find('python') == -1:
             return
@@ -70,9 +70,9 @@ class PythonFiximportsCommand(sublime_plugin.TextCommand):
         #     raise
 
 
-class PythonFixImportsBackground(sublime_plugin.EventListener):
+class PythonFiximportsBackground(sublime_plugin.EventListener):
 
-    def on_pre_save(self, view):
+    def on_pre_save_dissabled(self, view):
         self.settings = sublime.load_settings(SETTINGS_FILE)
 
         syntax = view.settings().get('syntax')
