@@ -38,12 +38,16 @@ You'll find settings in Preferences menu (``Preferences -> Package Settings -> P
 ::
 
     {
-        // Fix the imports on save
+        // Automatically fix the imports on save
         "autofix_on_save": false,
 
+        // Enable or disabl split of every imports in own line (one object import per line)
         "split_import_statements": true,
+
+        // Enable or disabl sorting or import in its own group
         "sort_import_statements": true,
     }
+
 
 Per-project settings
 ====================
@@ -85,8 +89,31 @@ Imports are reorganized automatically on save if the following setting is set: `
 Command Palette
 ===============
 
-Bring up the Command Palette and select ``Python Fix Imports`` or
-``Toggle Python Fix Imports (until restart)``
+Bring up the Command Palette and select one of the following options:
+
+``Python Fix Imports``
+
+    Fix imports in the current file.
+
+``Enable Python Fix Imports (until restart)``
+
+    Toggle the general settings ``autofix_on_save`` to ``Enabled`` until Sublime restart (overwrite
+    the project and global settings).
+
+``Disable Python Fix Imports (until restart)``
+
+    Toggle the general settings ``autofix_on_save`` to ``Disabled`` until Sublime restart (overwrite
+    the project and global settings).
+
+``Disable Python Fix Imports for this file (until restart)``
+
+    Disable the automatical fix of the import statements in the current file, independentely of the
+    global setting ``autofix_on_save``.
+
+``Enable Python Fix Imports for this file (until restart)``
+
+    Enable the automatical fix of the import statements in the current file, independentely of the
+    global setting ``autofix_on_save``.
 
 Hint: open Command Palette (``ctrl+shift+P``) and type ``Fix...`` up to highlight full caption.
 

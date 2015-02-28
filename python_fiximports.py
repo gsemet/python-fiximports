@@ -37,21 +37,6 @@ if sublime.platform() == 'windows':
 else:
     USER_CONFIG_NAME = 'python_fiximports.sublime-settings'
 
-
-#-- Cannot use sublime.packages_path() with ST3 because of inconsistency
-#-- of returned path between bootstap time vs running time.
-#pkg_path = os.path.join(sublime.packages_path(), PLUGIN_NAME)
-pkg_path = os.path.abspath(os.path.dirname(__file__))
-libs_path = os.path.join(pkg_path, 'libs')
-PPA_PATH.append(libs_path)
-
-versionlibs_path = os.path.join(pkg_path, 'libs', 'py' + PYMAMI)
-if os.path.exists(versionlibs_path):
-    PPA_PATH.append(versionlibs_path)
-
-printDebug('included directory to sys.path :', PPA_PATH)
-[sys.path.insert(0, p) for p in PPA_PATH if p not in sys.path]
-
 try:
     from . import fiximports
     import MergeUtils
@@ -147,22 +132,29 @@ class EnablePythonFiximportsForFileCommand(sublime_plugin.TextCommand):
 class PythonFiximportsBackground(sublime_plugin.EventListener):
 
     def on_pre_save(self, view):
-        printDebug("Reorganizing import on save")
         syntax = view.settings().get('syntax')
         if 'python' not in syntax.lower():
-            return
-
-        # do autoformat on file save if allowed in settings
-        if not load_python_fiximports_settings('autofix_on_save', False):
+            printDebug("Not a python file. Don't try to autofix")
             return
 
         f = get_current_filename()
-        if (override_enable_python_auto_fiximports is False and
-                f not in enable_python_autofix_for_files):
+
+        if f in enable_python_autofix_for_files:
+            printDebug("Current file in list of forced autofix. Do autofix")
+            view.run_command('python_fiximports')
+            return
+
+        if not load_python_fiximports_settings('autofix_on_save', False):
+            printDebug("Auto fix on save is Disabled. Do not autofix")
             return
 
         if f in disable_python_autofix_for_files:
+            printDebug("Current file in list of disabled autofix. Don't autofix")
             return
 
-        printDebug("Executing command 'python_fiximports'")
+        if override_enable_python_auto_fiximports is False:
+            printDebug("Temporary override of autofix import set to Disabled. Do not autofix")
+            return
+
+        printDebug("Nominal case: do autofix")
         view.run_command('python_fiximports')
