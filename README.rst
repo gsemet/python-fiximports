@@ -2,7 +2,7 @@
 Python Fix Imports
 ##################
 
-Python Fix Imports is a Sublime Text 3 plugin that can automatically reorganize your import
+Python Fix Imports is a Sublime Text 3 plugin that can automatically reorganize your ``import``
 statements. Please read the "Rationals" section for more information.
 
 This plugin comes from a script that has been written for the Buildbot project, in order to help
@@ -29,7 +29,7 @@ Here the organization this ``fiximports`` script enforces:
 Rule 1
 ------
 
-Each import statement only import one object, class or module.
+Each import statement only imports one method, class or module.
 
 Yes::
 
@@ -39,21 +39,24 @@ Yes::
 No::
 
     from abc import dce, fgh
-    from abc import (dce, fgh)
+    from abc import (dce,
+                     fgh)
     from abc import dce, \
                     fgh
 
 ``fiximports`` automatically splits ``import`` statements that uses a comma. ``\`` and parenthesis
 are not supported
 
-*Bonus*: enforcing this rule ensure you can always find occurences of the following search pattern:
+**Bonus**: enforcing this rule ensure you can always find occurences of the following search pattern:
 ``import name_of_the_object``.
 
 Rule 2
 ------
 
-Import statements are organized in block, separated by an empty line. Each block are alphabetically
+Import statements are organized in block, separated by an empty line. Each block is alphabetically
 sorted.
+
+This removes any ambiguity in the placement of an import line in a given block.
 
 Yes::
 
@@ -66,7 +69,7 @@ No::
     from abc import aaaa
     from abc import cccc
 
-Sorting only occurs for a given block, if for any reason a given import statement needs to be placed
+Sorting only occurs for a given block, if for any reason an import statement needs to be placed
 after another one, just add an empty line.
 
 ``fiximports`` can sorts all ``import`` statements at once (preserving the 'group' splitting).
@@ -112,6 +115,7 @@ You'll find settings in Preferences menu (``Preferences -> Package Settings -> P
         "sort_import_statements": true,
     }
 
+By editing ``User settings``, your personal liking will be kept safe over plugin upgrades.
 
 Per-project settings
 --------------------
@@ -126,7 +130,6 @@ Per-project settings
         }
     }
 
-By editing ``User settings``, your personal liking will be kept safe over plugin upgrades.
 
 Usage
 *****
@@ -155,7 +158,7 @@ Command Palette
 
 Bring up the Command Palette and select one of the following options:
 
-``Python Fix Imports``: Fix imports in the current file.
+``Python Fix Imports``: Execute Fix imports in the current file immediately.
 
 ``Enable Python Fix Imports (until restart)``: Toggle the general settings ``autofix_on_save`` to
 ``Enabled`` until Sublime restart (overwrite the project and global settings).
