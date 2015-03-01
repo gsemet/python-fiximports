@@ -9,12 +9,11 @@ This plugin comes from a script that has been written for the Buildbot project, 
 developers ensuring they properly organize their import statements in their Python files.
 
 
-Rationals
+Rationale
 *********
 
-The beginning of the file of each Python script is one of the part of the code that is likely to
-evolve the most over the lifetime of this very file. Imports statements gets added, removed,
-reorganized all over the time.
+The beginning of each Python script is the part of the code that is likely to evolve the most over
+the lifetime of the file. Imports statements gets added, removed, reorganized all over the time.
 
 Thanks to distributed versioning systems such as Git, several persons can easily work on the same
 time on the same file. And the management of the ``import`` statements is likely to cause conflict
