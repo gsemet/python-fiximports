@@ -49,10 +49,10 @@ Each import statement only imports one method, class or module.
                     fgh
 
 ``fiximports`` automatically splits ``import`` statements that uses a comma. ``\`` and parenthesis
-are not supported
+are not supported.
 
-**Bonus**: enforcing this rule ensure you can always find occurences of the following search pattern:
-``import name_of_the_object``.
+**Bonus**: enforcing this rule ensure you can always find occurences of the following search
+pattern: ``import name_of_the_object``.
 
 Rule 2
 ------
@@ -68,6 +68,7 @@ This removes any ambiguity in the placement of an import line in a given block.
 
     from abc import aaaa
     from abc import bbbb
+    from abc import cccc
 
 **No:**
 
