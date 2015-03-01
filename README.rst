@@ -103,7 +103,7 @@ The following code
     from .packages.urllib3.util import parse_url
     from .packages.urllib3.exceptions import DecodeError, ReadTimeoutError, ProtocolError, LocationParseError
     from .exceptions import HTTPError, MissingSchema, InvalidURL, ChunkedEncodingError, ContentDecodingError, ConnectionError, StreamConsumedError
-    from .utils import guess_filename, get_auth_from_url, requote_uri, stream_decode_response_unicode, to_key_val_list, parse_header_links,    iter_slices, guess_json_utf, super_len, to_native_string
+    from .utils import guess_filename, get_auth_from_url, requote_uri, stream_decode_response_unicode, to_key_val_list, parse_header_links, iter_slices, guess_json_utf, super_len, to_native_string
     from .compat import cookielib, urlunparse, urlsplit, urlencode, str, bytes, StringIO, is_py2, chardet, json, builtin_str, basestring
     from .status_codes import codes
 
