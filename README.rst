@@ -74,6 +74,81 @@ after another one, just add an empty line.
 
 ``fiximports`` can sorts all ``import`` statements at once (preserving the 'group' splitting).
 
+Example
+*******
+
+The following code::
+
+    import datetime
+    import collections
+
+    from io import BytesIO, UnsupportedOperation
+    from .hooks import default_hooks
+    from .structures import CaseInsensitiveDict
+
+    from .auth import HTTPBasicAuth
+    from .cookies import cookiejar_from_dict, get_cookie_header
+    from .packages.urllib3.fields import RequestField
+    from .packages.urllib3.filepost import encode_multipart_formdata
+    from .packages.urllib3.util import parse_url
+    from .packages.urllib3.exceptions import DecodeError, ReadTimeoutError, ProtocolError, LocationParseError
+    from .exceptions import HTTPError, MissingSchema, InvalidURL, ChunkedEncodingError, ContentDecodingError, ConnectionError, StreamConsumedError
+    from .utils import guess_filename, get_auth_from_url, requote_uri, stream_decode_response_unicode, to_key_val_list, parse_header_links,    iter_slices, guess_json_utf, super_len, to_native_string
+    from .compat import cookielib, urlunparse, urlsplit, urlencode, str, bytes, StringIO, is_py2, chardet, json, builtin_str, basestring
+    from .status_codes import codes
+
+
+Becomes::
+
+    import collections
+    import datetime
+
+    from .hooks import default_hooks
+    from .structures import CaseInsensitiveDict
+    from io import BytesIO
+    from io import UnsupportedOperation
+
+    from .auth import HTTPBasicAuth
+    from .compat import StringIO
+    from .compat import basestring
+    from .compat import builtin_str
+    from .compat import bytes
+    from .compat import chardet
+    from .compat import cookielib
+    from .compat import is_py2
+    from .compat import json
+    from .compat import str
+    from .compat import urlencode
+    from .compat import urlsplit
+    from .compat import urlunparse
+    from .cookies import cookiejar_from_dict
+    from .cookies import get_cookie_header
+    from .exceptions import ChunkedEncodingError
+    from .exceptions import ConnectionError
+    from .exceptions import ContentDecodingError
+    from .exceptions import HTTPError
+    from .exceptions import InvalidURL
+    from .exceptions import MissingSchema
+    from .exceptions import StreamConsumedError
+    from .packages.urllib3.exceptions import DecodeError
+    from .packages.urllib3.exceptions import LocationParseError
+    from .packages.urllib3.exceptions import ProtocolError
+    from .packages.urllib3.exceptions import ReadTimeoutError
+    from .packages.urllib3.fields import RequestField
+    from .packages.urllib3.filepost import encode_multipart_formdata
+    from .packages.urllib3.util import parse_url
+    from .status_codes import codes
+    from .utils import get_auth_from_url
+    from .utils import guess_filename
+    from .utils import guess_json_utf
+    from .utils import iter_slices
+    from .utils import parse_header_links
+    from .utils import requote_uri
+    from .utils import stream_decode_response_unicode
+    from .utils import super_len
+    from .utils import to_key_val_list
+    from .utils import to_native_string
+
 
 Installation
 ************
