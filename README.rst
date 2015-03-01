@@ -31,12 +31,16 @@ Rule 1
 
 Each import statement only imports one method, class or module.
 
-Yes::
+**Yes:**
+
+.. code:: python
 
     from abc import dce
     from abc import fgh
 
-No::
+**No:**
+
+.. code:: python
 
     from abc import dce, fgh
     from abc import (dce,
@@ -58,12 +62,16 @@ sorted.
 
 This removes any ambiguity in the placement of an import line in a given block.
 
-Yes::
+**Yes:**
+
+.. code:: python
 
     from abc import aaaa
     from abc import bbbb
 
-No::
+**No:**
+
+.. code:: python
 
     from abc import bbbb
     from abc import aaaa
@@ -77,7 +85,9 @@ after another one, just add an empty line.
 Example
 *******
 
-The following code::
+The following code
+
+.. code:: python
 
     import datetime
     import collections
@@ -98,7 +108,9 @@ The following code::
     from .status_codes import codes
 
 
-Becomes::
+Becomes
+
+.. code:: python
 
     import collections
     import datetime
@@ -177,7 +189,7 @@ Global Settings
 
 You'll find settings in Preferences menu (``Preferences -> Package Settings -> Python Fix Imports``).
 
-::
+.. code:: javascript
 
     {
         // Automatically fix the imports on save
@@ -195,7 +207,7 @@ By editing ``User settings``, your personal liking will be kept safe over plugin
 Per-project settings
 --------------------
 
-::
+.. code:: javascript
 
     {
         "settings": {
