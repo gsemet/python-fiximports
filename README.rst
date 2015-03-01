@@ -2,29 +2,28 @@
 Python Fix Imports
 ##################
 
-Python Fix Imports is a Sublime Text 3 plugin that can automatically reorganize your ``import``
-statements. Please read the "Rationals" section for more information.
+Python Fix Imports is a Sublime Text 3 plugin that can automatically reorganize the ``import``
+statements of your Python script. Please read the "Rationals" section for more information.
 
 This plugin comes from a script that has been written for the Buildbot project, in order to help
-developers ensuring they properly organize their import statements in there Python files
+developers ensuring they properly organize their import statements in their Python files.
 
 
 Rationals
 *********
 
-The beginning of the file of each Python script is one the part of the code that is likely to evolve
-the most over the lifetime of the code. Imports statements gets added, removed, reorganized all over
+The beginning of the file of each Python script is one of the part of the code that is likely to evolve
+the most over the lifetime of the file. Imports statements gets added, removed, reorganized all over
 the time.
 
 Thanks to distributed versioning systems such as Git, several persons can easily work on the same
-time on the same file. And one source of conflict is the management of the ``import`` statements,
-that each developers adds his modifications differently.
+time on the same file. And the management of the ``import`` statements is likely to cause conflict when each developer adds his modifications.
 
-We really started having the need for automatic reorganization when we have set up an automatic
+We really started having the need for an automatic reorganization script when we have set up an automatic
 merge of several branches alltogether. Most of the time, the conflicts were found to be on the
-``import`` lines...
+``import`` lines.
 
-Here the organization this ``fiximports`` script enforces:
+Here are the rules this ``fiximports`` script enforces:
 
 Rule 1
 ------
@@ -48,19 +47,19 @@ Each import statement only imports one method, class or module.
     from abc import dce, \
                     fgh
 
-``fiximports`` automatically splits ``import`` statements that uses a comma. ``\`` and parenthesis
+``fiximports`` automatically splits ``import`` statements that use a comma. ``\`` and parenthesis
 are not supported.
 
-**Bonus**: enforcing this rule ensure you can always find occurences of the following search
-pattern: ``import name_of_the_object``.
+**Bonus**: enforcing this rule ensures you can always find occurences of the following search
+pattern: ``import name_of_the_object``. This really practical since it will be always the same pattern.
 
 Rule 2
 ------
 
-Import statements are organized in block, separated by an empty line. Each block is alphabetically
+Import statements are organized in blocks, separated by an empty line. Each block is alphabetically
 sorted.
 
-This removes any ambiguity in the placement of an import line in a given block.
+This removes any ambiguity in the placement of an import line in a given block. When two developers on two different branches want to add the same import in the same file, the location of this line will be the same and so the merge if any will be obvious.
 
 **Yes:**
 
@@ -78,15 +77,15 @@ This removes any ambiguity in the placement of an import line in a given block.
     from abc import aaaa
     from abc import cccc
 
-Sorting only occurs for a given block, if for any reason an import statement needs to be placed
+Sorting only occurs on a given block, if for any reason an import statement needs to be placed
 after another one, just add an empty line.
 
-``fiximports`` can sorts all ``import`` statements at once (preserving the 'group' splitting).
+``fiximports`` can sort all ``import`` statements at once (preserving the 'group' splitting).
 
 Example
 *******
 
-The following code
+Let's look at the following code:
 
 .. code:: python
 
@@ -109,7 +108,7 @@ The following code
     from .status_codes import codes
 
 
-Becomes
+This automatically becomes with this plugin:
 
 .. code:: python
 
