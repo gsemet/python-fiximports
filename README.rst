@@ -3,7 +3,7 @@ Python Fix Imports
 ##################
 
 Python Fix Imports is a Sublime Text 3 plugin that can automatically reorganize the ``import``
-statements of your Python script. Please read the "Rationals" section for more information.
+statements of your Python script. Please read the "Rationale" section for more information.
 
 This plugin comes from a script that has been written for the Buildbot project, in order to help
 developers ensuring they properly organize their import statements in their Python files.
