@@ -50,9 +50,9 @@ Each import statement only imports one method, class or module.
 ``fiximports`` automatically splits ``import`` statements that use a comma. ``\`` and parenthesis
 are not supported.
 
-**Bonus**: enforcing this rule ensures you can always find occurences of the following search
-pattern: ``import name_of_the_object``. This really practical since it will be always the same
-pattern.
+**Bonus**: let's say you want where and how an object "object_name" is imported. This rules ensures
+you will always find the import occurences of the following search pattern: ``import object_name``.
+No need to do regex, only ``import `` + what you are looking for.
 
 Rule 2
 ------
@@ -84,6 +84,30 @@ Sorting only occurs on a given block, if for any reason an import statement need
 another one, just add an empty line.
 
 ``fiximports`` can sort all ``import`` statements at once (preserving the 'group' splitting).
+
+In some project, I tend to enforce the ordering of the groups themself:
+
+- first the standard library imports:
+
+  .. code-block:: python
+  
+      import json
+      import login
+      import os
+      
+- Standart libraries in the form ``from ... import``:
+
+  .. code-block:: python
+
+      from textwrap import dedent
+      from twisted.internet import defer
+
+- Project modules with their complete name (always uses ``from __future__ import absolute_import``)
+
+       .. code-block:: python
+
+            from myproject.the.module.name import ClassName
+            from myproject.the.other.module.name import TheOtherClassName
 
 Example
 *******
