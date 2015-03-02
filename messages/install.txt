@@ -13,10 +13,10 @@ Key Bindings
 The default key bindings for this plugin:
 
 **Windows, Linux:**
-+ `ctrl+shift+i`: Format current file
++ `ctrl+alt+shift+i`: Fix imports in current file
 
 **OSX:**
-+ `ctrl+shift+i`: Format current file
++ `command+ctrl+shift+i`: Fix imports in current file
 
 Command Palette
 ***************
