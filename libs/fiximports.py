@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 '''Check and sort import statement from a python file '''
+from __future__ import absolute_import
 
 import re
 import sys
