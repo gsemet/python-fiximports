@@ -188,6 +188,7 @@ This automatically becomes with this plugin:
     from .utils import to_key_val_list
     from .utils import to_native_string
 
+Yes, it is more verbose, but it will behave much better during the merges.
 
 Installation
 ************
