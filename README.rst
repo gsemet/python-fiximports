@@ -90,11 +90,11 @@ In some project, I tend to enforce the ordering of the groups themself:
 - first the standard library imports:
 
   .. code-block:: python
-  
+
       import json
       import login
       import os
-      
+
 - Standart libraries in the form ``from ... import``:
 
   .. code-block:: python
@@ -188,7 +188,8 @@ This automatically becomes with this plugin:
     from .utils import to_key_val_list
     from .utils import to_native_string
 
-Yes, it is more verbose, but it will behave much better during the merges.
+Indeed, the beginning of the file is much more verbose, but merges will be easier (since when
+we switched to this paradigm, we almost have not conflict on these lines).
 
 Installation
 ************

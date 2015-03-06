@@ -15,6 +15,13 @@
                             {
                                 "command": "open_file",
                                 "args": {
+                                    "file": "${packages}/python-fiximports/README.rst"
+                                },
+                                "caption": "README"
+                            },
+                            {
+                                "command": "open_file",
+                                "args": {
                                     "file": "${packages}/python-fiximports/python_fiximports.sublime-settings"
                                 },
                                 "caption": "Settings – Default"
