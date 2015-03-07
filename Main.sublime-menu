@@ -20,6 +20,9 @@
                                 "caption": "README"
                             },
                             {
+                                "caption": "-"
+                            },
+                            {
                                 "command": "open_file",
                                 "args": {
                                     "file": "${packages}/python-fiximports/python_fiximports.sublime-settings"
