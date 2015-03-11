@@ -25,7 +25,7 @@ from __future__ import absolute_import
 
 import sublime
 
-from diff_match_patch import diff_match_patch
+from .diff_match_patch import diff_match_patch
 
 
 class MergeException(Exception):
