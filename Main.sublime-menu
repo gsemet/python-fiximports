@@ -15,7 +15,7 @@
                             {
                                 "command": "open_file",
                                 "args": {
-                                    "file": "${packages}/python-fiximports/README.rst"
+                                    "file": "${packages}/Python Fix Imports/README.rst"
                                 },
                                 "caption": "README"
                             },
@@ -25,7 +25,7 @@
                             {
                                 "command": "open_file",
                                 "args": {
-                                    "file": "${packages}/python-fiximports/python_fiximports.sublime-settings"
+                                    "file": "${packages}/Python Fix Imports/python_fiximports.sublime-settings"
                                 },
                                 "caption": "Settings – Default"
                             },
@@ -42,7 +42,7 @@
                             {
                                 "command": "open_file",
                                 "args": {
-                                    "file": "${packages}/python-fiximports/Default (OSX).sublime-keymap",
+                                    "file": "${packages}/Python Fix Imports/Default (OSX).sublime-keymap",
                                     "platform": "OSX"
                                 },
                                 "caption": "Key Bindings – Default"
@@ -50,7 +50,7 @@
                             {
                                 "command": "open_file",
                                 "args": {
-                                    "file": "${packages}/python-fiximports/Default (Linux).sublime-keymap",
+                                    "file": "${packages}/Python Fix Imports/Default (Linux).sublime-keymap",
                                     "platform": "Linux"
                                 },
                                 "caption": "Key Bindings – Default"
@@ -58,7 +58,7 @@
                             {
                                 "command": "open_file",
                                 "args": {
-                                    "file": "${packages}/python-fiximports/Default (Windows).sublime-keymap",
+                                    "file": "${packages}/Python Fix Imports/Default (Windows).sublime-keymap",
                                     "platform": "Windows"
                                 },
                                 "caption": "Key Bindings – Default"
