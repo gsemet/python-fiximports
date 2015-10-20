@@ -48,7 +48,6 @@ except:
         '{0}: import error: {1}'.format(PLUGIN_NAME, sys.exc_info()[1]))
     raise
 
-
 override_enable_python_auto_fiximports = None
 disable_python_autofix_for_files = set()
 enable_python_autofix_for_files = set()
@@ -83,11 +82,11 @@ class PythonFiximportsCommand(sublime_plugin.TextCommand):
         printDebug("split_import_statements = {!r}".format(split_import_statements))
         printDebug("sort_import_statements = {!r}".format(sort_import_statements))
 
-        res, fixed = fiximports.FixImports().sortImportGroups(
+        _res, fixed = fiximports.FixImports().sortImportGroups(
             "filename", source,
             splitImportStatements=split_import_statements,
             sortImportStatements=sort_import_statements)
-        is_dirty, err = MergeUtils.merge_code(self.view, edit, source, fixed)
+        _is_dirty, err = MergeUtils.merge_code(self.view, edit, source, fixed)
         if err:
             sublime.error_message(
                 "%s: Merge failure: '%s'" % (PLUGIN_NAME, err))
@@ -113,7 +112,6 @@ class DisablePythonFiximportsCommand(sublime_plugin.TextCommand):
 class DisablePythonFiximportsForFileCommand(sublime_plugin.TextCommand):
 
     def run(self, edit):
-        global disable_python_autofix_for_files
         printDebug("DisablePythonFiximportsForFileCommand")
         f = get_current_filename()
         disable_python_autofix_for_files.add(f)
@@ -124,8 +122,6 @@ class DisablePythonFiximportsForFileCommand(sublime_plugin.TextCommand):
 class EnablePythonFiximportsForFileCommand(sublime_plugin.TextCommand):
 
     def run(self, edit):
-        global enable_python_autofix_for_files
-        global disable_python_fiximports_for_file
         printDebug("enable_python_autofix_for_files")
         f = get_current_filename()
         enable_python_autofix_for_files.add(f)

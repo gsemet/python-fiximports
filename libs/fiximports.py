@@ -97,7 +97,7 @@ class FixImports(object):
                 self.groups.append((self.group_start, len(newlines)))
                 self.group_start = None
 
-        if sortImportStatements:
+        if splitImportStatements:
             iter = lines.__iter__()
             while True:
                 try:
@@ -126,13 +126,13 @@ class FixImports(object):
         maybeEndGroup()
 
         # sort each group
-        if splitImportStatements:
+        if sortImportStatements:
             lines = newlines
             for start, end in self.groups:
                 lines[start:end] = sorted(lines[start:end], key=self.importOrder)
 
         # reiterate line by line to split mixed groups
-        if sortImportStatements:
+        if splitImportStatements:
             splitted_groups_lines = []
             prev_import_line_type = ""
             for line in lines:
