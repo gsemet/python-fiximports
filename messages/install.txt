@@ -21,4 +21,4 @@ The default key bindings for this plugin:
 Command Palette
 ***************
 
-Open the command palette, it apperas as ``Python Fix Imports``.
+Open the command palette, it appears as ``Python Fix Imports``.
